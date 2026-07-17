@@ -58,25 +58,60 @@ const music=$("backgroundMusic");
 function startMusic(){
 
 
-    if(music && !Journey.musicStarted){
+const music=document.getElementById(
+"backgroundMusic"
+);
 
 
-        music.volume=.25;
+if(!music) return;
 
 
-        music.play()
-
-        .catch(()=>{});
+music.volume=0;
 
 
-        Journey.musicStarted=true;
+music.play()
+
+.then(()=>{
 
 
-    }
+let volume=0;
 
+
+const fade=setInterval(()=>{
+
+
+volume+=0.02;
+
+
+music.volume=volume;
+
+
+if(volume>=0.35){
+
+clearInterval(fade);
 
 }
 
+
+},100);
+
+
+})
+
+
+.catch(error=>{
+
+
+console.log(
+"Music blocked:",
+error
+);
+
+
+});
+
+
+}
 
 
 
