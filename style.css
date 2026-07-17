@@ -1,15 +1,13 @@
 /* ==========================================================
    THE JOURNEY TO JULY 19 🌻
-   style.css
-   Version 5.0
-   Cinematic Birthday Film
+   FINAL VERSION 5.0
+   CINEMATIC BIRTHDAY FILM
 ========================================================== */
 
 
-
-/* ==========================================================
+/* ==========================
    RESET
-========================================================== */
+========================== */
 
 
 *{
@@ -22,18 +20,11 @@
 
 
 
-html{
-
-    scroll-behavior:smooth;
-
-}
-
-
-
+html,
 body{
 
     width:100%;
-    height:100vh;
+    height:100%;
 
     overflow:hidden;
 
@@ -49,10 +40,9 @@ body{
 
 
 
-
-/* ==========================================================
+/* ==========================
    LOADING SCREEN
-========================================================== */
+========================== */
 
 
 #loader{
@@ -63,9 +53,11 @@ body{
 
     background:
 
-    radial-gradient(circle at center,
-    #3b260f,
-    #050505 70%);
+    radial-gradient(
+    circle,
+    #3a240b,
+    #050505 70%
+    );
 
 
     display:flex;
@@ -73,7 +65,6 @@ body{
     justify-content:center;
 
     align-items:center;
-
 
     z-index:9999;
 
@@ -99,6 +90,8 @@ body{
 
 
 
+
+
 .loader-content{
 
     text-align:center;
@@ -111,11 +104,9 @@ body{
 
     font-family:"Cinzel",serif;
 
-    font-size:clamp(25px,5vw,45px);
+    font-size:clamp(28px,5vw,55px);
 
     letter-spacing:3px;
-
-    margin-bottom:20px;
 
 }
 
@@ -123,9 +114,11 @@ body{
 
 .loader-content p{
 
+    margin-top:20px;
+
     font-family:"Cormorant Garamond",serif;
 
-    font-size:24px;
+    font-size:25px;
 
     opacity:.8;
 
@@ -135,25 +128,28 @@ body{
 
 
 
-.loader-bar{
+.loader-line{
 
     width:260px;
 
-    height:4px;
+    height:5px;
 
-    background:rgba(255,255,255,.15);
+    background:
 
-    margin:30px auto;
+    rgba(255,255,255,.15);
+
+    border-radius:20px;
 
     overflow:hidden;
 
-    border-radius:20px;
+    margin:35px auto;
+
 
 }
 
 
 
-.loader-bar span{
+.loader-line span{
 
     display:block;
 
@@ -161,9 +157,11 @@ body{
 
     width:0%;
 
-    background:#d8a43a;
 
-    transition:width .3s ease;
+    background:#d6a33a;
+
+    transition:.3s ease;
+
 
 }
 
@@ -173,20 +171,16 @@ body{
 
 
 
-
-
-/* ==========================================================
+/* ==========================
    BACKGROUND
-========================================================== */
+========================== */
 
 
-#background{
+#cinematic-background{
 
     position:fixed;
 
     inset:0;
-
-    overflow:hidden;
 
     z-index:-1;
 
@@ -199,10 +193,12 @@ body{
 
     #020202,
 
-    #140b04
+    #1a0d04
 
     );
 
+
+    overflow:hidden;
 
 }
 
@@ -211,6 +207,7 @@ body{
 
 
 .stars{
+
 
     position:absolute;
 
@@ -228,21 +225,26 @@ body{
     );
 
 
-    background-size:80px 80px;
+    background-size:
 
-    opacity:.25;
+    90px 90px;
+
+
+    opacity:.3;
 
 
     animation:
 
-    starMove 30s linear infinite;
+    starsMove 35s linear infinite;
 
 
 }
 
 
 
-@keyframes starMove{
+
+
+@keyframes starsMove{
 
 
 from{
@@ -254,7 +256,7 @@ transform:translateY(0);
 
 to{
 
-transform:translateY(-200px);
+transform:translateY(-300px);
 
 }
 
@@ -265,62 +267,26 @@ transform:translateY(-200px);
 
 
 
-.particles::before{
+#particles span{
 
-    content:"";
 
     position:absolute;
 
-    width:8px;
 
-    height:8px;
+    width:5px;
 
-    background:#f7d77b;
+    height:5px;
+
+
+    background:#f5d47a;
+
 
     border-radius:50%;
 
 
     box-shadow:
 
-    100px 200px #fff,
-
-    250px 100px #f7d77b,
-
-    500px 300px #fff,
-
-    700px 150px #f7d77b,
-
-    900px 400px #fff;
-
-
-    animation:
-
-    floatingParticles 12s infinite alternate;
-
-
-}
-
-
-
-@keyframes floatingParticles{
-
-
-from{
-
-transform:translateY(0);
-
-opacity:.4;
-
-}
-
-
-to{
-
-transform:translateY(-80px);
-
-opacity:1;
-
-}
+    0 0 15px #f5d47a;
 
 
 }
@@ -333,9 +299,9 @@ opacity:1;
 
 
 
-/* ==========================================================
-   JOURNEY SYSTEM
-========================================================== */
+/* ==========================
+   SCENE SYSTEM
+========================== */
 
 
 #journey{
@@ -348,9 +314,13 @@ opacity:1;
 
 
 
+
+
 .scene{
 
+
     position:absolute;
+
 
     inset:0;
 
@@ -364,6 +334,7 @@ opacity:1;
 
     opacity:0;
 
+
     pointer-events:none;
 
 
@@ -374,12 +345,14 @@ opacity:1;
 
     transition:
 
-    opacity 1.2s ease,
+    opacity 1.4s ease,
 
-    transform 1.2s ease;
+    transform 1.4s ease;
 
 
 }
+
+
 
 
 
@@ -388,7 +361,9 @@ opacity:1;
 
     opacity:1;
 
+
     pointer-events:auto;
+
 
     transform:
 
@@ -402,10 +377,13 @@ opacity:1;
 
 
 
-.scene-content{
+
+
+.content{
 
 
     width:min(90%,900px);
+
 
     text-align:center;
 
@@ -416,20 +394,18 @@ opacity:1;
 
 
 
-
-
-
-
-/* ==========================================================
+/* ==========================
    TYPOGRAPHY
-========================================================== */
+========================== */
 
 
 h1,
-h2{
+h2,
+h3{
 
 
     font-family:"Cinzel",serif;
+
 
     letter-spacing:2px;
 
@@ -438,23 +414,38 @@ h2{
 
 
 
+
 h2{
 
-    font-size:clamp(30px,5vw,55px);
 
-    margin-bottom:30px;
+    font-size:
+
+    clamp(35px,5vw,60px);
+
+
+    margin-bottom:25px;
+
 
 }
+
 
 
 
 p{
 
-    font-family:"Cormorant Garamond",serif;
 
-    font-size:clamp(20px,3vw,30px);
+    font-family:
+
+    "Cormorant Garamond",serif;
+
+
+    font-size:
+
+    clamp(20px,3vw,30px);
+
 
     line-height:1.5;
+
 
 }
 
@@ -462,7 +453,14 @@ p{
 
 
 
-.cinematic-title span{
+
+
+/* ==========================
+   INTRO TEXT
+========================== */
+
+
+.opening-text span{
 
 
     display:block;
@@ -470,19 +468,23 @@ p{
 
     opacity:0;
 
-    transform:translateY(30px);
+
+    transform:
+
+    translateY(40px);
 
 
     animation:
 
-    revealText 2s forwards;
+    reveal 2s forwards;
 
 
 }
 
 
 
-.cinematic-title span:nth-child(2){
+
+.opening-text span:nth-child(2){
 
     animation-delay:2s;
 
@@ -490,7 +492,9 @@ p{
 
 
 
-@keyframes revealText{
+
+
+@keyframes reveal{
 
 
 to{
@@ -510,23 +514,22 @@ transform:translateY(0);
 
 
 
-
-/* ==========================================================
+/* ==========================
    BUTTONS
-========================================================== */
+========================== */
 
 
 button{
 
 
-    cursor:pointer;
-
     border:none;
+
+    cursor:pointer;
 
 
     padding:
 
-    14px 35px;
+    15px 38px;
 
 
     margin-top:35px;
@@ -557,33 +560,113 @@ button:hover{
 
     transform:scale(1.05);
 
+
 }
 
 
 
-.primary-button{
+
+
+.gold-button{
 
 
     background:#d8a43a;
 
+
     color:#080808;
+
+
+    box-shadow:
+
+    0 0 30px rgba(216,164,58,.4);
 
 
 }
 
 
 
-.secondary-button{
+
+
+.outline-button{
 
 
     background:transparent;
+
 
     color:white;
 
 
     border:
 
-    1px solid rgba(255,255,255,.4);
+    1px solid rgba(255,255,255,.5);
+
+
+}
+/* ==========================
+   HEART CHAPTER
+========================== */
+
+
+#heart{
+
+
+    font-size:120px;
+
+
+    margin:40px auto;
+
+
+    cursor:pointer;
+
+
+    display:flex;
+
+    justify-content:center;
+
+
+    filter:
+
+    drop-shadow(0 0 30px white);
+
+
+    animation:
+
+    heartbeat 2s infinite;
+
+
+    transition:
+
+    transform 1s ease;
+
+
+}
+
+
+
+
+
+@keyframes heartbeat{
+
+
+0%{
+
+transform:scale(1);
+
+}
+
+
+50%{
+
+transform:scale(1.12);
+
+}
+
+
+100%{
+
+transform:scale(1);
+
+}
 
 
 }
@@ -593,22 +676,70 @@ button:hover{
 
 
 
-/* ==========================================================
+.heart-break{
+
+
+    animation:
+
+    heartDisappear 2s ease forwards;
+
+
+}
+
+
+
+
+
+@keyframes heartDisappear{
+
+
+to{
+
+
+    transform:
+
+    scale(0);
+
+
+    opacity:0;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
    PUZZLE
-========================================================== */
+========================== */
 
 
-.puzzle-box input{
+.puzzle-container input{
 
 
     margin-top:30px;
 
-    padding:15px;
 
-    width:180px;
+    width:200px;
+
+
+    padding:15px;
 
 
     text-align:center;
+
+
+    font-size:22px;
+
+
+    color:white;
 
 
     background:
@@ -618,15 +749,13 @@ button:hover{
 
     border:
 
-    1px solid rgba(255,255,255,.3);
+    1px solid rgba(255,255,255,.4);
 
 
-    color:white;
-
-    font-size:20px;
+    border-radius:12px;
 
 
-    border-radius:10px;
+    outline:none;
 
 
 }
@@ -635,40 +764,53 @@ button:hover{
 
 
 
-
-/* ==========================================================
-   HEART
-========================================================== */
-
-
-#heart{
-
-
-    font-size:100px;
-
-    margin:40px;
-
-
-    filter:
-
-    drop-shadow(0 0 25px white);
+.shake{
 
 
     animation:
 
-    heartbeat 2s infinite;
+    shake .5s ease;
 
 
 }
 
 
 
-@keyframes heartbeat{
+
+@keyframes shake{
+
+
+0%{
+
+transform:translateX(0);
+
+}
+
+
+25%{
+
+transform:translateX(-12px);
+
+}
 
 
 50%{
 
-transform:scale(1.15);
+transform:translateX(12px);
+
+}
+
+
+75%{
+
+transform:translateX(-12px);
+
+}
+
+
+100%{
+
+transform:translateX(0);
 
 }
 
@@ -681,18 +823,43 @@ transform:scale(1.15);
 
 
 
-
-/* ==========================================================
+/* ==========================
    TIMELINE
-========================================================== */
+========================== */
 
 
-#timelineImage{
+.memory-card{
 
 
-    width:min(80%,500px);
+    background:
 
-    height:350px;
+    rgba(255,255,255,.05);
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+    padding:25px;
+
+
+    border-radius:25px;
+
+
+}
+
+
+
+
+
+#timelinePhoto{
+
+
+    width:min(90%,500px);
+
+
+    height:330px;
 
 
     object-fit:cover;
@@ -701,16 +868,29 @@ transform:scale(1.15);
     border-radius:20px;
 
 
+    box-shadow:
+
+    0 0 40px rgba(0,0,0,.5);
+
+
     animation:
 
-    kenBurns 8s infinite alternate;
+    imageZoom 8s infinite alternate;
 
 
 }
 
 
 
-@keyframes kenBurns{
+
+@keyframes imageZoom{
+
+
+from{
+
+transform:scale(1);
+
+}
 
 
 to{
@@ -727,39 +907,139 @@ transform:scale(1.08);
 
 
 
+#timelineHeading{
 
 
-
-/* ==========================================================
-   CONSTELLATION
-========================================================== */
+    margin-top:20px;
 
 
-#nightSky{
-
-
-    height:350px;
-
-    position:relative;
+    font-size:32px;
 
 
 }
 
 
 
-#starsContainer span{
+
+
+.navigation{
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    gap:40px;
+
+
+}
+
+
+
+
+.navigation button{
+
+
+    margin-top:25px;
+
+
+    width:55px;
+
+    height:55px;
+
+
+    padding:0;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+    color:white;
+
+
+    font-size:25px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   CONSTELLATION
+========================== */
+
+
+#sky{
+
+
+    position:relative;
+
+
+    width:100%;
+
+
+    height:380px;
+
+
+    background:
+
+    radial-gradient(
+
+    circle,
+
+    #16233b,
+
+    #020204
+
+    );
+
+
+    border-radius:30px;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+#starField span{
 
 
     position:absolute;
 
+
     width:18px;
+
 
     height:18px;
 
-    background:#ffe59a;
-
 
     border-radius:50%;
+
+
+    background:#ffe8a0;
+
+
+    cursor:pointer;
 
 
     box-shadow:
@@ -767,7 +1047,104 @@ transform:scale(1.08);
     0 0 25px #ffd86b;
 
 
-    cursor:pointer;
+    animation:
+
+    starGlow 3s infinite;
+
+
+}
+
+
+
+
+
+@keyframes starGlow{
+
+
+50%{
+
+transform:scale(1.5);
+
+opacity:.6;
+
+}
+
+
+}
+
+
+
+
+
+
+#starField span.collected{
+
+
+    opacity:.3;
+
+
+    transform:scale(.8);
+
+
+}
+
+
+
+
+
+#memoryBox{
+
+
+    position:absolute;
+
+
+    left:50%;
+
+
+    top:50%;
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+    width:min(90%,400px);
+
+
+    padding:35px;
+
+
+    background:
+
+    rgba(10,10,10,.95);
+
+
+    border-radius:25px;
+
+
+    opacity:0;
+
+
+    pointer-events:none;
+
+
+    transition:1s ease;
+
+
+}
+
+
+
+
+
+#memoryBox.show{
+
+
+    opacity:1;
+
+
+    pointer-events:auto;
 
 
 }
@@ -778,24 +1155,45 @@ transform:scale(1.08);
 
 
 
-
-
-/* ==========================================================
+/* ==========================
    VIDEO
-========================================================== */
+========================== */
 
 
-#videoFrame{
+.video-container{
 
 
     position:relative;
 
-    width:min(90%,700px);
+
+    width:min(90%,750px);
+
 
     margin:auto;
 
 
+    padding:15px;
+
+
+    border-radius:30px;
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #d8a43a,
+
+    #3b2105
+
+    );
+
+
 }
+
+
 
 
 
@@ -804,10 +1202,16 @@ transform:scale(1.08);
 
     width:100%;
 
+
     border-radius:20px;
 
 
+    display:block;
+
+
 }
+
+
 
 
 
@@ -816,16 +1220,30 @@ transform:scale(1.08);
 
     position:absolute;
 
+
     top:50%;
 
+
     left:50%;
+
 
     transform:
 
     translate(-50%,-50%);
 
 
-    font-size:40px;
+    font-size:45px;
+
+
+    width:80px;
+
+    height:80px;
+
+
+    padding:0;
+
+
+    border-radius:50%;
 
 
 }
@@ -836,19 +1254,74 @@ transform:scale(1.08);
 
 
 
+/* ==========================
+   FINAL SCENE
+========================== */
 
 
-/* ==========================================================
-   FINAL
-========================================================== */
+#finalScene{
 
 
-#loveReveal{
+    background:
+
+
+    linear-gradient(
+
+    180deg,
+
+    transparent,
+
+    rgba(255,180,70,.25)
+
+    );
+
+
+}
+
+
+
+
+
+.final-content{
+
+
+    position:relative;
+
+
+}
+
+
+
+
+
+#finalFirst,
+#finalSecond{
+
+
+    opacity:0;
+
+
+    transform:
+
+    translateY(30px);
+
+
+    transition:
+
+    2s ease;
+
+
+}
+
+
+
+
+#loveText{
 
 
     font-size:
 
-    clamp(50px,10vw,120px);
+    clamp(60px,12vw,140px);
 
 
     margin:40px 0;
@@ -856,7 +1329,23 @@ transform:scale(1.08);
 
     opacity:0;
 
+
+    transition:
+
+    3s ease;
+
+
+    color:#fff;
+
+
+    text-shadow:
+
+    0 0 40px gold;
+
+
 }
+
+
 
 
 
@@ -868,19 +1357,27 @@ transform:scale(1.08);
     "Dancing Script",cursive;
 
 
-    font-size:45px;
+    font-size:55px;
+
 
 }
 
 
 
-.secret-code{
 
 
-    letter-spacing:8px;
+.secret{
+
+
+    margin-top:20px;
+
+
+    letter-spacing:12px;
+
 
     opacity:.5;
 
+
 }
 
 
@@ -889,14 +1386,173 @@ transform:scale(1.08);
 
 
 
+/* ==========================
+   FIRE EFFECTS
+========================== */
 
 
-/* ==========================================================
+.firefly{
+
+
+    position:fixed;
+
+
+    width:6px;
+
+
+    height:6px;
+
+
+    background:#ffe69a;
+
+
+    border-radius:50%;
+
+
+    box-shadow:
+
+    0 0 20px #ffe69a;
+
+
+    animation:
+
+    floatFire 8s infinite;
+
+
+}
+
+
+
+
+
+@keyframes floatFire{
+
+
+from{
+
+
+transform:
+
+translate(0,0);
+
+
+opacity:.3;
+
+
+}
+
+
+
+50%{
+
+
+opacity:1;
+
+
+}
+
+
+to{
+
+
+transform:
+
+translate(100px,-200px);
+
+
+opacity:0;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+.petal{
+
+
+    position:fixed;
+
+
+    width:12px;
+
+
+    height:18px;
+
+
+    background:#f5c76b;
+
+
+    border-radius:
+
+    50% 0 50% 0;
+
+
+    animation:
+
+    fallPetal 8s linear infinite;
+
+
+}
+
+
+
+
+
+@keyframes fallPetal{
+
+
+from{
+
+transform:
+
+translateY(-100px)
+
+rotate(0);
+
+
+opacity:1;
+
+
+}
+
+
+to{
+
+transform:
+
+translateY(100vh)
+
+rotate(360deg);
+
+
+opacity:0;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
    MOBILE
-========================================================== */
+========================== */
 
 
-@media(max-width:600px){
+@media(max-width:700px){
+
 
 
 h2{
@@ -907,17 +1563,49 @@ font-size:32px;
 
 
 
-#heart{
+p{
 
-font-size:70px;
+font-size:22px;
 
 }
 
 
 
-#timelineImage{
+#heart{
 
-height:250px;
+font-size:80px;
+
+}
+
+
+
+#timelinePhoto{
+
+height:240px;
+
+}
+
+
+
+#sky{
+
+height:280px;
+
+}
+
+
+
+#loveText{
+
+font-size:65px;
+
+}
+
+
+
+.signature{
+
+font-size:40px;
 
 }
 
@@ -925,534 +1613,7 @@ height:250px;
 
 button{
 
-padding:12px 25px;
-
-}
-
-
-}
-/* ==========================================================
-   CINEMATIC UPGRADE EFFECTS
-========================================================== */
-
-
-/* Scene cinematic fade */
-
-.scene.active .scene-content{
-
-    animation:
-
-    cinematicEnter 1.5s ease forwards;
-
-}
-
-
-@keyframes cinematicEnter{
-
-
-from{
-
-    opacity:0;
-
-    transform:
-
-    translateY(40px)
-
-    scale(.96);
-
-    filter:blur(10px);
-
-}
-
-
-to{
-
-
-    opacity:1;
-
-    transform:
-
-    translateY(0)
-
-    scale(1);
-
-    filter:blur(0);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-/* Heart glow upgrade */
-
-
-#heart{
-
-
-    cursor:pointer;
-
-    transition:
-
-    transform 1s ease,
-
-    filter 1s ease;
-
-
-}
-
-
-
-#heart:hover{
-
-
-    filter:
-
-    drop-shadow(
-
-    0 0 50px white
-
-    );
-
-
-}
-
-
-
-
-
-
-/* Shake animation for wrong puzzle */
-
-
-.shake{
-
-
-animation:
-
-shake .4s ease;
-
-
-}
-
-
-
-@keyframes shake{
-
-
-0%{
-
-transform:translateX(0);
-
-}
-
-
-25%{
-
-transform:translateX(-10px);
-
-}
-
-
-50%{
-
-transform:translateX(10px);
-
-}
-
-
-75%{
-
-transform:translateX(-10px);
-
-}
-
-
-100%{
-
-transform:translateX(0);
-
-}
-
-
-}
-
-
-
-
-
-
-
-/* Timeline polish */
-
-
-#timeline-container{
-
-
-background:
-
-rgba(255,255,255,.04);
-
-
-padding:25px;
-
-border-radius:25px;
-
-
-backdrop-filter:
-
-blur(15px);
-
-
-}
-
-
-
-
-
-#timelineTitle{
-
-
-margin-top:20px;
-
-
-font-family:
-
-"Cinzel",serif;
-
-
-font-size:32px;
-
-
-}
-
-
-
-
-
-
-
-
-/* Constellation stars */
-
-
-#starsContainer span{
-
-
-animation:
-
-starPulse 3s infinite;
-
-
-}
-
-
-
-@keyframes starPulse{
-
-
-50%{
-
-transform:scale(1.5);
-
-opacity:.7;
-
-}
-
-
-}
-
-
-
-
-
-
-
-/* Memory popup */
-
-
-#memoryPopup{
-
-
-position:absolute;
-
-
-top:50%;
-
-left:50%;
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-background:
-
-rgba(20,15,10,.95);
-
-
-padding:35px;
-
-
-border-radius:25px;
-
-
-width:min(90%,400px);
-
-
-opacity:0;
-
-
-pointer-events:none;
-
-
-transition:
-
-all 1s ease;
-
-
-}
-
-
-
-
-#memoryPopup.show{
-
-
-opacity:1;
-
-pointer-events:auto;
-
-
-}
-
-
-
-
-
-
-
-
-/* Video cinematic frame */
-
-
-#videoFrame{
-
-
-padding:20px;
-
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#d8a43a,
-
-#3a2108
-
-);
-
-
-border-radius:30px;
-
-
-}
-
-
-
-
-
-#birthdayVideo{
-
-
-box-shadow:
-
-0 0 60px rgba(216,164,58,.4);
-
-
-}
-
-
-
-
-
-
-
-
-/* Final scene */
-
-
-#scene-final{
-
-
-background:
-
-linear-gradient(
-
-180deg,
-
-transparent,
-
-rgba(255,170,60,.15)
-
-);
-
-
-}
-
-
-
-
-
-#loveReveal{
-
-
-animation:
-
-loveGlow 3s infinite alternate;
-
-
-}
-
-
-
-@keyframes loveGlow{
-
-
-from{
-
-
-text-shadow:
-
-0 0 20px gold;
-
-
-}
-
-
-to{
-
-
-text-shadow:
-
-0 0 60px gold;
-
-
-}
-
-
-}
-
-
-
-
-
-/* Firefly effect */
-
-
-.firefly{
-
-
-position:fixed;
-
-
-width:5px;
-
-height:5px;
-
-
-background:#ffe99c;
-
-
-border-radius:50%;
-
-
-box-shadow:
-
-0 0 20px #ffe99c;
-
-
-animation:
-
-fireflyMove 8s infinite;
-
-
-}
-
-
-
-
-@keyframes fireflyMove{
-
-
-0%{
-
-transform:
-
-translate(0,0);
-
-opacity:.3;
-
-}
-
-
-50%{
-
-opacity:1;
-
-}
-
-
-100%{
-
-transform:
-
-translate(100px,-200px);
-
-opacity:0;
-
-
-}
-
-
-}
-
-
-
-
-
-/* Mobile improvements */
-
-
-@media(max-width:600px){
-
-
-.scene-content{
-
-width:92%;
-
-}
-
-
-.cinematic-title{
-
-font-size:35px;
-
-}
-
-
-#loveReveal{
-
-font-size:60px;
+padding:13px 28px;
 
 }
 
