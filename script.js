@@ -1040,6 +1040,130 @@ love.style.opacity=1;
 
 
 break;
+      /* ==========================================================
+   FINAL ATMOSPHERE EFFECTS
+========================================================== */
+
+
+function createFireflies(){
+
+
+for(let i=0;i<30;i++){
+
+
+let fire=document.createElement("div");
+
+
+fire.className="firefly";
+
+
+fire.style.left=
+
+Math.random()*100+"%";
+
+
+fire.style.top=
+
+Math.random()*100+"%";
+
+
+fire.style.animationDelay=
+
+Math.random()*5+"s";
+
+
+document.body.appendChild(fire);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+function createPetals(){
+
+
+for(let i=0;i<25;i++){
+
+
+let petal=document.createElement("div");
+
+
+petal.className="firefly";
+
+
+petal.style.width="10px";
+
+petal.style.height="10px";
+
+
+petal.style.left=
+
+Math.random()*100+"%";
+
+
+petal.style.top=
+
+"100%";
+
+
+
+document.body.appendChild(petal);
+
+
+
+petal.animate([
+
+
+{
+
+transform:"translateY(0)",
+
+opacity:0
+
+},
+
+
+{
+
+transform:
+
+`translateY(-900px)
+
+rotate(360deg)`,
+
+opacity:1
+
+
+}
+
+
+
+],{
+
+
+duration:7000,
+
+iterations:Infinity
+
+
+});
+
+
+
+}
+
+
+
+}
 
 
 
