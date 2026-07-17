@@ -1,8 +1,7 @@
 /* ==========================================================
    THE JOURNEY TO JULY 19 🌻
-   script.js
-   Version 5.0
-   Core Journey Engine
+   FINAL VERSION 5.0
+   MAIN JAVASCRIPT ENGINE
 ========================================================== */
 
 
@@ -11,16 +10,14 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 /* ==========================================================
-   GLOBAL JOURNEY OBJECT
+   JOURNEY SYSTEM
 ========================================================== */
 
 
 const Journey = {
 
 
-    currentScene:0,
-
-    totalScenes:6,
+    scene:0,
 
     locked:false,
 
@@ -36,15 +33,12 @@ const Journey = {
 
 
 /* ==========================================================
-   ELEMENT HELPER
+   HELPER
 ========================================================== */
 
 
-function get(id){
+const $ = (id)=>document.getElementById(id);
 
-    return document.getElementById(id);
-
-}
 
 
 
@@ -53,43 +47,35 @@ function get(id){
 
 
 /* ==========================================================
-   AUDIO MANAGER
+   AUDIO SYSTEM
 ========================================================== */
 
 
-const AudioManager = {
-
-
-    ambient:get("ambientAudio"),
+const music=$("backgroundMusic");
 
 
 
-    start(){
+function startMusic(){
 
 
-        if(this.ambient && !Journey.musicStarted){
+    if(music && !Journey.musicStarted){
 
 
-            this.ambient.volume=.25;
+        music.volume=.25;
 
 
-            this.ambient.play()
+        music.play()
 
-            .catch(()=>{});
-
-
-            Journey.musicStarted=true;
+        .catch(()=>{});
 
 
-        }
+        Journey.musicStarted=true;
 
 
     }
 
 
-
-};
-
+}
 
 
 
@@ -98,40 +84,42 @@ const AudioManager = {
 
 
 /* ==========================================================
-   LOADER
+   LOADING SCREEN
 ========================================================== */
 
 
-const loader=get("loader");
+const loader=$("loader");
 
-const loaderProgress=get("loaderProgress");
-
-
-
-let progress=0;
-
-
-const loading=setInterval(()=>{
-
-
-progress+=5;
+const progress=$("loadingProgress");
 
 
 
-if(loaderProgress){
+let load=0;
 
-    loaderProgress.style.width=
 
-    progress+"%";
+
+const loaderTimer=setInterval(()=>{
+
+
+load+=4;
+
+
+
+if(progress){
+
+progress.style.width=
+
+load+"%";
 
 }
 
 
 
-if(progress>=100){
+
+if(load>=100){
 
 
-clearInterval(loading);
+clearInterval(loaderTimer);
 
 
 
@@ -142,18 +130,20 @@ if(loader){
 
 loader.classList.add("hide");
 
-}
-
-
-},500);
-
-
 
 }
 
 
 
-},100);
+},700);
+
+
+
+}
+
+
+
+},80);
 
 
 
@@ -164,7 +154,7 @@ loader.classList.add("hide");
 
 
 /* ==========================================================
-   SCENE MANAGER
+   SCENE MANAGEMENT
 ========================================================== */
 
 
@@ -172,7 +162,7 @@ const scenes=document.querySelectorAll(".scene");
 
 
 
-function goToScene(number){
+function changeScene(number){
 
 
 
@@ -194,34 +184,31 @@ scene.classList.remove("active");
 
 
 
-const target=scenes[number];
-
-
-
-if(target){
-
-
 setTimeout(()=>{
 
 
-target.classList.add("active");
-
-Journey.currentScene=number;
+if(scenes[number]){
 
 
-Journey.locked=false;
+scenes[number].classList.add("active");
 
+
+Journey.scene=number;
 
 
 initializeScene(number);
 
 
 
-},500);
-
-
-
 }
+
+
+
+Journey.locked=false;
+
+
+
+},700);
 
 
 
@@ -239,22 +226,23 @@ initializeScene(number);
 ========================================================== */
 
 
-const begin=get("beginJourney");
+const start=$("startJourney");
 
 
-if(begin){
+
+if(start){
 
 
-begin.addEventListener("click",()=>{
+start.onclick=()=>{
 
 
-AudioManager.start();
+startMusic();
 
 
-goToScene(1);
+changeScene(1);
 
 
-});
+};
 
 
 }
@@ -272,30 +260,31 @@ goToScene(1);
 ========================================================== */
 
 
-const input=get("yearInput");
+const year=$("yearAnswer");
 
-const unlock=get("unlockPuzzle");
+const check=$("checkYear");
 
-const puzzleMessage=get("puzzleMessage");
-
-
-
-
-function checkPuzzle(){
+const result=$("puzzleResult");
 
 
 
-if(!input)return;
+
+
+function checkMemory(){
 
 
 
-if(input.value==="2018"){
+if(!year)return;
 
 
 
-if(puzzleMessage){
+if(year.value==="2018"){
 
-puzzleMessage.innerHTML=
+
+
+if(result){
+
+result.innerHTML=
 
 "Memory unlocked ✨";
 
@@ -303,14 +292,14 @@ puzzleMessage.innerHTML=
 
 
 
-createParticles();
+goldBurst();
 
 
 
 setTimeout(()=>{
 
 
-goToScene(2);
+changeScene(2);
 
 
 },1200);
@@ -320,24 +309,23 @@ goToScene(2);
 }
 
 
-
 else{
 
 
-input.classList.remove("shake");
+year.classList.remove("shake");
 
 
-void input.offsetWidth;
+void year.offsetWidth;
 
 
-input.classList.add("shake");
+year.classList.add("shake");
 
 
 
-if(puzzleMessage){
+if(result){
 
 
-puzzleMessage.innerHTML=
+result.innerHTML=
 
 "Think a little harder 🤍";
 
@@ -355,45 +343,34 @@ puzzleMessage.innerHTML=
 
 
 
+if(check){
 
 
-if(unlock){
-
-
-unlock.addEventListener(
-
-"click",
-
-checkPuzzle
-
-);
+check.onclick=checkMemory;
 
 
 }
 
 
 
-if(input){
+if(year){
 
 
-input.addEventListener(
-
-"keydown",
-
-(e)=>{
+year.onkeydown=(e)=>{
 
 
 if(e.key==="Enter"){
 
-checkPuzzle();
+
+checkMemory();
+
 
 }
 
 
-}
 
+};
 
-);
 
 
 }
@@ -411,23 +388,19 @@ checkPuzzle();
 ========================================================== */
 
 
-const heart=get("heart");
+const heart=$("heart");
 
-const continueHeart=get("continueHeart");
+const continueHeart=$("continueHeart");
 
 
 
 if(heart){
 
 
-
-heart.addEventListener("click",()=>{
-
+heart.onclick=()=>{
 
 
-heart.style.transform=
-
-"scale(.4)";
+heart.classList.add("heart-break");
 
 
 
@@ -437,46 +410,43 @@ setTimeout(()=>{
 heart.innerHTML="✨";
 
 
-},700);
+heart.classList.remove("heart-break");
+
+
+},1500);
+
+
+
+
+const text=$("heartText");
 
 
 
 setTimeout(()=>{
 
 
-const message=get("heartMessage");
+if(text){
 
 
-if(message){
+text.innerHTML=
 
-
-message.innerHTML=
-
-"Every beautiful story begins with a single moment.";
+"Some moments quietly change everything.";
 
 
 }
 
 
 
-if(continueHeart){
-
-continueHeart.style.opacity=1;
-
-
-}
+},1600);
 
 
 
-},1200);
-
-
-
-});
+};
 
 
 
 }
+
 
 
 
@@ -486,13 +456,13 @@ continueHeart.style.opacity=1;
 if(continueHeart){
 
 
-continueHeart.addEventListener(
+continueHeart.onclick=()=>{
 
-"click",
 
-()=>goToScene(3)
+changeScene(3);
 
-);
+
+};
 
 
 }
@@ -509,62 +479,87 @@ continueHeart.addEventListener(
 ========================================================== */
 
 
-const timelineData=[
+const timeline=[
 
 
 {
+
 
 image:"assets/images/timeline1.webp",
 
-title:"A Beautiful Beginning",
 
-text:"A moment that made her story special."
+title:"The Beginning",
+
+
+text:"Before there was us, there was a beautiful story waiting to be told."
+
 
 },
 
 
+
 {
+
 
 image:"assets/images/timeline2.webp",
 
+
 title:"Growing Dreams",
 
-text:"Every chapter shaped who she became."
+
+text:"Every experience shaped the person she became."
+
 
 },
 
 
+
 {
+
 
 image:"assets/images/timeline3.webp",
 
-title:"Little Memories",
 
-text:"The moments that made her smile."
+title:"Beautiful Memories",
+
+
+text:"The little moments that made her smile."
+
 
 },
 
 
+
 {
+
 
 image:"assets/images/timeline4.webp",
 
-title:"A Stronger You",
 
-text:"Every experience created something beautiful."
+title:"A Beautiful Soul",
+
+
+text:"Someone whose kindness makes everything brighter."
+
 
 },
 
 
+
 {
+
 
 image:"assets/images/timeline5.webp",
 
+
 title:"The Person I Admire",
 
-text:"The journey that brought her here."
+
+text:"The journey that created the person I love."
+
 
 }
+
 
 
 ];
@@ -575,55 +570,55 @@ let timelineIndex=0;
 
 
 
-function loadTimeline(){
+
+
+function updateTimeline(){
 
 
 
-const image=get("timelineImage");
+const img=$("timelinePhoto");
 
-const title=get("timelineTitle");
+const title=$("timelineHeading");
 
-const text=get("timelineText");
-
-
-
-if(image){
-
-image.src=
-
-timelineData[timelineIndex].image;
-
-}
+const text=$("timelineDescription");
 
 
 
-if(title){
+if(img)
+
+img.src=
+
+timeline[timelineIndex].image;
+
+
+
+if(title)
 
 title.innerHTML=
 
-timelineData[timelineIndex].title;
-
-}
+timeline[timelineIndex].title;
 
 
 
-if(text){
+if(text)
 
 text.innerHTML=
 
-timelineData[timelineIndex].text;
+timeline[timelineIndex].text;
+
+
 
 }
 
 
-}
 
 
 
 
-const next=get("nextMemory");
 
-const previous=get("previousMemory");
+const next=$("next");
+
+const previous=$("previous");
 
 
 
@@ -636,16 +631,16 @@ next.onclick=()=>{
 timelineIndex++;
 
 
-if(timelineIndex>=timelineData.length)
+if(timelineIndex>=timeline.length)
 
 timelineIndex=0;
 
 
-
-loadTimeline();
+updateTimeline();
 
 
 };
+
 
 
 }
@@ -663,61 +658,130 @@ timelineIndex--;
 
 if(timelineIndex<0)
 
-timelineIndex=
-
-timelineData.length-1;
+timelineIndex=timeline.length-1;
 
 
-
-loadTimeline();
+updateTimeline();
 
 
 };
+
 
 
 }
 
 
 
-
-
-
-const continueTimeline=get("continueTimeline");
+const continueTimeline=$("continueTimeline");
 
 
 
 if(continueTimeline){
 
 
-continueTimeline.onclick=()=>goToScene(4);
+continueTimeline.onclick=()=>{
+
+
+changeScene(4);
+
+
+};
+
 
 
 }
-
-
-
-
-
-
-
-
-
 /* ==========================================================
    CHAPTER 4 — CONSTELLATION
 ========================================================== */
 
 
-const starsContainer=get("starsContainer");
+const starsContainer=$("starField");
+
+const memoryBox=$("memoryBox");
+
+const memoryTitle=$("memoryTitle");
+
+const memoryText=$("memoryText");
+
+const counter=$("starCounter");
+
+const closeMemory=$("closeMemory");
+
+const continueStars=$("continueStars");
 
 
-let foundStars=0;
+
+let collectedStars=0;
+
+
+
+const constellationMemories=[
+
+
+{
+title:"The First Chapter",
+text:"Every beautiful story begins with a moment worth remembering."
+},
+
+
+{
+title:"The Little Things",
+text:"Small conversations often become the biggest memories."
+},
+
+
+{
+title:"The Smiles",
+text:"The moments that brought happiness and warmth."
+},
+
+
+{
+title:"The Journey",
+text:"Every step created something meaningful."
+},
+
+
+{
+title:"The Distance",
+text:"Some bonds become stronger with time."
+},
+
+
+{
+title:"The Promise",
+text:"A story still being written."
+},
+
+
+{
+title:"The Present",
+text:"The beautiful memories we hold today."
+},
+
+
+{
+title:"Forever",
+text:"The memories waiting to be created."
+}
+
+
+];
+
+
+
 
 
 
 function createStars(){
 
 
+
 if(!starsContainer)return;
+
+
+
+starsContainer.innerHTML="";
 
 
 
@@ -725,46 +789,91 @@ for(let i=0;i<8;i++){
 
 
 
-let star=document.createElement("span");
+const star=document.createElement("span");
 
 
 
 star.style.left=
 
-Math.random()*90+"%";
+Math.random()*85+"%";
+
 
 
 star.style.top=
 
-Math.random()*80+"%";
+Math.random()*75+"%";
+
+
 
 
 
 star.onclick=()=>{
 
 
-foundStars++;
 
+if(star.classList.contains("collected"))
 
-star.style.opacity=".3";
-
-
-get("memoryCounter").innerHTML=
-
-foundStars+" / 8 Memories";
+return;
 
 
 
-if(foundStars>=8){
+star.classList.add("collected");
 
 
-get("continueConstellation").style.opacity=1;
+
+collectedStars++;
+
+
+
+if(memoryTitle)
+
+memoryTitle.innerHTML=
+
+constellationMemories[i].title;
+
+
+
+if(memoryText)
+
+memoryText.innerHTML=
+
+constellationMemories[i].text;
+
+
+
+if(memoryBox)
+
+memoryBox.classList.add("show");
+
+
+
+
+
+if(counter)
+
+counter.innerHTML=
+
+collectedStars+" / 8 Memories";
+
+
+
+
+
+if(collectedStars===8){
+
+
+
+if(continueStars)
+
+continueStars.style.opacity="1";
 
 
 }
 
 
+
 };
+
 
 
 
@@ -780,18 +889,55 @@ starsContainer.appendChild(star);
 
 
 
-const continueConstellation=get("continueConstellation");
 
 
-if(continueConstellation){
 
 
-continueConstellation.onclick=
+if(closeMemory){
 
-()=>goToScene(5);
+
+
+closeMemory.onclick=()=>{
+
+
+if(memoryBox)
+
+memoryBox.classList.remove("show");
+
+
+};
+
 
 
 }
+
+
+
+
+
+if(continueStars){
+
+
+
+continueStars.onclick=()=>{
+
+
+if(collectedStars>=8){
+
+
+changeScene(5);
+
+
+}
+
+
+
+};
+
+
+
+}
+
 
 
 
@@ -802,38 +948,57 @@ continueConstellation.onclick=
 
 
 /* ==========================================================
-   CHAPTER 5 — VIDEO
+   CHAPTER 5 — BIRTHDAY VIDEO
 ========================================================== */
 
 
-const video=get("birthdayVideo");
+const video=$("birthdayVideo");
 
-const play=get("playVideo");
+const playVideo=$("playVideo");
 
-const continueVideo=get("continueVideo");
-
-
-
-if(play && video){
+const continueVideo=$("continueVideo");
 
 
-play.onclick=()=>{
 
 
-video.play();
+
+if(playVideo && video){
 
 
-play.style.display="none";
+
+playVideo.onclick=()=>{
+
+
+video.play()
+
+.catch(()=>{});
+
+
+
+playVideo.style.opacity="0";
+
+
+setTimeout(()=>{
+
+
+playVideo.style.display="none";
+
+
+},500);
+
 
 
 };
+
 
 
 }
 
 
 
+
 if(video){
+
 
 
 video.onended=()=>{
@@ -841,10 +1006,11 @@ video.onended=()=>{
 
 if(continueVideo)
 
-continueVideo.style.opacity=1;
+continueVideo.style.opacity="1";
 
 
 };
+
 
 
 }
@@ -855,41 +1021,19 @@ continueVideo.style.opacity=1;
 if(continueVideo){
 
 
-continueVideo.onclick=
 
-()=>goToScene(6);
-
-
-}
+continueVideo.onclick=()=>{
 
 
-
-
-
-
-
-
-/* ==========================================================
-   FINAL
-========================================================== */
-
-
-const restart=get("restartJourney");
-
-
-if(restart){
-
-
-restart.onclick=()=>{
-
-
-location.reload();
+changeScene(6);
 
 
 };
 
 
+
 }
+
 
 
 
@@ -899,120 +1043,13 @@ location.reload();
 
 
 /* ==========================================================
-   PARTICLES
+   CHAPTER 6 — FINAL REVEAL
 ========================================================== */
 
 
-function createParticles(){
 
+function finalReveal(){
 
-
-for(let i=0;i<30;i++){
-
-
-let p=document.createElement("span");
-
-
-p.style.position="fixed";
-
-p.style.left="50%";
-
-p.style.top="50%";
-
-
-p.style.width="6px";
-
-p.style.height="6px";
-
-
-p.style.background="#d8a43a";
-
-
-p.style.borderRadius="50%";
-
-
-
-document.body.appendChild(p);
-
-
-
-let x=(Math.random()-0.5)*500;
-
-let y=(Math.random()-0.5)*500;
-
-
-
-p.animate([
-
-{
-
-transform:"translate(0,0)",
-
-opacity:1
-
-},
-
-
-{
-
-transform:`translate(${x}px,${y}px)`,
-
-opacity:0
-
-}
-
-
-],{
-
-duration:1500
-
-});
-
-
-
-setTimeout(()=>p.remove(),1500);
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-   SCENE INITIALIZATION
-========================================================== */
-
-
-function initializeScene(number){
-
-
-
-switch(number){
-
-
-
-case 3:
-
-loadTimeline();
-
-break;
-
-
-
-case 4:
-
-createStars();
-
-break;
-      case 6:
 
 
 createFireflies();
@@ -1021,7 +1058,57 @@ createPetals();
 
 
 
-const love=get("loveReveal");
+const first=$("finalFirst");
+
+const second=$("finalSecond");
+
+const love=$("loveText");
+
+
+
+
+
+if(first){
+
+
+setTimeout(()=>{
+
+
+first.style.opacity="1";
+
+first.style.transform="translateY(0)";
+
+
+},1200);
+
+
+}
+
+
+
+
+
+
+if(second){
+
+
+setTimeout(()=>{
+
+
+second.style.opacity="1";
+
+second.style.transform="translateY(0)";
+
+
+},3500);
+
+
+
+}
+
+
+
+
 
 
 if(love){
@@ -1030,31 +1117,146 @@ if(love){
 setTimeout(()=>{
 
 
-love.style.opacity=1;
+love.style.opacity="1";
 
 
-},1500);
+},6000);
+
 
 
 }
 
 
-break;
-      /* ==========================================================
-   FINAL ATMOSPHERE EFFECTS
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   GOLD PARTICLE BURST
+========================================================== */
+
+
+function goldBurst(){
+
+
+
+for(let i=0;i<35;i++){
+
+
+
+const particle=document.createElement("span");
+
+
+
+particle.style.position="fixed";
+
+
+particle.style.left="50%";
+
+particle.style.top="50%";
+
+
+particle.style.width="7px";
+
+particle.style.height="7px";
+
+
+particle.style.borderRadius="50%";
+
+
+particle.style.background="#d8a43a";
+
+
+
+document.body.appendChild(particle);
+
+
+
+
+const x=(Math.random()-0.5)*500;
+
+const y=(Math.random()-0.5)*500;
+
+
+
+particle.animate([
+
+
+{
+transform:"translate(0,0)",
+opacity:1
+},
+
+
+{
+transform:`translate(${x}px,${y}px)`,
+opacity:0
+}
+
+
+],{
+
+
+duration:1500,
+
+easing:"ease-out"
+
+
+});
+
+
+
+setTimeout(()=>{
+
+
+particle.remove();
+
+
+},1600);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   FIREFLIES
 ========================================================== */
 
 
 function createFireflies(){
 
 
-for(let i=0;i<30;i++){
+
+for(let i=0;i<35;i++){
 
 
-let fire=document.createElement("div");
+
+const fire=document.createElement("div");
+
 
 
 fire.className="firefly";
+
 
 
 fire.style.left=
@@ -1062,14 +1264,17 @@ fire.style.left=
 Math.random()*100+"%";
 
 
+
 fire.style.top=
 
 Math.random()*100+"%";
 
 
+
 fire.style.animationDelay=
 
 Math.random()*5+"s";
+
 
 
 document.body.appendChild(fire);
@@ -1088,21 +1293,27 @@ document.body.appendChild(fire);
 
 
 
+
+
+/* ==========================================================
+   PETALS
+========================================================== */
+
+
 function createPetals(){
+
 
 
 for(let i=0;i<25;i++){
 
 
-let petal=document.createElement("div");
+
+const petal=document.createElement("div");
 
 
-petal.className="firefly";
 
+petal.className="petal";
 
-petal.style.width="10px";
-
-petal.style.height="10px";
 
 
 petal.style.left=
@@ -1110,9 +1321,10 @@ petal.style.left=
 Math.random()*100+"%";
 
 
-petal.style.top=
 
-"100%";
+petal.style.animationDelay=
+
+Math.random()*5+"s";
 
 
 
@@ -1120,45 +1332,6 @@ document.body.appendChild(petal);
 
 
 
-petal.animate([
-
-
-{
-
-transform:"translateY(0)",
-
-opacity:0
-
-},
-
-
-{
-
-transform:
-
-`translateY(-900px)
-
-rotate(360deg)`,
-
-opacity:1
-
-
-}
-
-
-
-],{
-
-
-duration:7000,
-
-iterations:Infinity
-
-
-});
-
-
-
 }
 
 
@@ -1167,3 +1340,87 @@ iterations:Infinity
 
 
 
+
+
+
+
+
+
+/* ==========================================================
+   RESTART
+========================================================== */
+
+
+const restart=$("restart");
+
+
+
+if(restart){
+
+
+restart.onclick=()=>{
+
+
+location.reload();
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   SCENE INITIALIZATION
+========================================================== */
+
+
+function initializeScene(scene){
+
+
+
+switch(scene){
+
+
+
+case 3:
+
+updateTimeline();
+
+break;
+
+
+
+case 4:
+
+createStars();
+
+break;
+
+
+
+case 6:
+
+finalReveal();
+
+break;
+
+
+
+}
+
+
+
+}
+
+
+
+});   
