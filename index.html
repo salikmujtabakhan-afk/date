@@ -3,26 +3,24 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        The Journey to July 19 🌻
-    </title>
+<title>The Journey to July 19 🌻</title>
 
-
-    <!-- Google Fonts -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Dancing+Script:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="A cinematic birthday journey created with love.">
 
 
-    <!-- Main CSS -->
+<!-- Fonts -->
 
-    <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Dancing+Script:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -31,12 +29,12 @@
 <body>
 
 
-<!-- ==================================================
+<!-- ==========================
      LOADING SCREEN
-================================================== -->
+========================== -->
+
 
 <div id="loader">
-
 
     <div class="loader-content">
 
@@ -50,15 +48,13 @@
         </p>
 
 
-        <div class="loader-bar">
+        <div class="loader-line">
 
-            <span id="loaderProgress"></span>
+            <span id="loadingProgress"></span>
 
         </div>
 
-
     </div>
-
 
 </div>
 
@@ -66,17 +62,16 @@
 
 
 
-<!-- ==================================================
-     AMBIENT BACKGROUND
-================================================== -->
+<!-- ==========================
+     BACKGROUND EFFECTS
+========================== -->
 
-<div id="background">
 
+<div id="cinematic-background">
 
     <div class="stars"></div>
 
-    <div class="particles"></div>
-
+    <div id="particles"></div>
 
 </div>
 
@@ -84,17 +79,15 @@
 
 
 
-<!-- ==================================================
+
+<!-- ==========================
      AUDIO
-================================================== -->
+========================== -->
 
 
-<audio 
-id="ambientAudio"
-loop
-preload="auto">
+<audio id="backgroundMusic" loop>
 
-<source src="assets/music/ambient.mp3" type="audio/mpeg">
+    <source src="assets/music/ambient.mp3" type="audio/mpeg">
 
 </audio>
 
@@ -103,9 +96,11 @@ preload="auto">
 
 
 
-<!-- ==================================================
-     MAIN JOURNEY CONTAINER
-================================================== -->
+
+
+<!-- ==========================
+     MAIN JOURNEY
+========================== -->
 
 
 <main id="journey">
@@ -114,21 +109,18 @@ preload="auto">
 
 
 
-<!-- ==================================================
-     INTRO SCENE
-================================================== -->
+<!-- ==========================
+     INTRO
+========================== -->
 
 
-<section 
-class="scene active"
-id="scene-intro">
+<section class="scene active" id="intro">
 
 
-<div class="scene-content">
+<div class="content">
 
 
-<h1 class="cinematic-title">
-
+<h1 class="opening-text">
 
 <span>
 Before there was us...
@@ -139,19 +131,16 @@ Before there was us...
 there was you.
 </span>
 
-
 </h1>
 
 
 
-<button 
-class="primary-button"
-id="beginJourney">
-
+<button id="startJourney" class="gold-button">
 
 Begin The Journey
 
 </button>
+
 
 
 </div>
@@ -165,23 +154,21 @@ Begin The Journey
 
 
 
-<!-- ==================================================
-     CHAPTER 1 — MEMORY PUZZLE
-================================================== -->
+
+<!-- ==========================
+     CHAPTER 1 PUZZLE
+========================== -->
 
 
-<section 
-class="scene"
-id="scene-puzzle">
+<section class="scene" id="puzzle">
 
 
-<div class="scene-content">
+<div class="content">
 
 
 <h2>
 Where did our story begin?
 </h2>
-
 
 
 <p>
@@ -190,23 +177,17 @@ Enter the year our story began.
 
 
 
-<div class="puzzle-box">
+<div class="puzzle-container">
 
 
-<input
-
+<input 
+id="yearAnswer"
 type="number"
-
-id="yearInput"
-
-placeholder="YYYY"
-
-maxlength="4">
+placeholder="YYYY">
 
 
-<button
 
-id="unlockPuzzle">
+<button id="checkYear">
 
 Unlock Memory
 
@@ -214,10 +195,12 @@ Unlock Memory
 
 
 
-<p id="puzzleMessage"></p>
+<p id="puzzleResult"></p>
+
 
 
 </div>
+
 
 
 </div>
@@ -232,20 +215,16 @@ Unlock Memory
 
 
 
-<!-- ==================================================
-     CHAPTER 2 — HEART MEMORY
-================================================== -->
+
+<!-- ==========================
+     CHAPTER 2 HEART
+========================== -->
 
 
-<section
-
-class="scene"
-
-id="scene-heart">
+<section class="scene" id="heartScene">
 
 
-
-<div class="scene-content">
+<div class="content">
 
 
 <h2>
@@ -256,9 +235,7 @@ Touch the heart...
 
 
 
-<div 
-
-id="heart">
+<div id="heart">
 
 🤍
 
@@ -266,19 +243,13 @@ id="heart">
 
 
 
-<p 
-
-id="heartMessage">
-
-</p>
+<p id="heartText"></p>
 
 
 
-<button
-
-class="secondary-button"
-
-id="continueHeart">
+<button 
+id="continueHeart"
+class="outline-button">
 
 Continue
 
@@ -299,56 +270,45 @@ Continue
 
 
 
-<!-- ==================================================
-     CHAPTER 3 — HER JOURNEY TIMELINE
-================================================== -->
+
+<!-- ==========================
+     CHAPTER 3 HER JOURNEY
+========================== -->
 
 
-<section
-
-class="scene"
-
-id="scene-timeline">
+<section class="scene" id="timeline">
 
 
-
-<div class="scene-content">
-
+<div class="content">
 
 
 <h2>
-
 Her Journey
-
 </h2>
 
 
 
-<div id="timeline-container">
+<div class="memory-card">
 
 
-
-<img
-
-id="timelineImage"
-
+<img 
+id="timelinePhoto"
 src="assets/images/timeline1.webp"
-
 alt="Memory">
 
 
 
-<h3 id="timelineTitle">
+<h3 id="timelineHeading">
 
-Memory Title
+The Beginning
 
 </h3>
 
 
 
-<p id="timelineText">
+<p id="timelineDescription">
 
-Memory description.
+A beautiful chapter.
 
 </p>
 
@@ -360,24 +320,27 @@ Memory description.
 
 
 
-<div class="timeline-controls">
+<div class="navigation">
 
 
-<button id="previousMemory">
+<button id="previous">
 
 ←
 
 </button>
 
 
-<div id="timelineDots"></div>
+
+<div id="timelineProgress"></div>
 
 
-<button id="nextMemory">
+
+<button id="next">
 
 →
 
 </button>
+
 
 
 </div>
@@ -386,17 +349,13 @@ Memory description.
 
 
 
-<button
-
-class="secondary-button"
-
-id="continueTimeline">
-
+<button 
+id="continueTimeline"
+class="outline-button">
 
 Continue
 
 </button>
-
 
 
 
@@ -413,44 +372,35 @@ Continue
 
 
 
-
-<!-- ==================================================
-     CHAPTER 4 — CONSTELLATION
-================================================== -->
-
-
-<section
-
-class="scene"
-
-id="scene-constellation">
+<!-- ==========================
+     CHAPTER 4 CONSTELLATION
+========================== -->
 
 
+<section class="scene" id="constellation">
 
-<div class="scene-content">
 
+<div class="content">
 
 
 <h2>
-
 Our Constellation ✨
-
 </h2>
 
 
 
+<div id="sky">
 
-<div id="nightSky">
 
-
-<div id="starsContainer"></div>
+<div id="starField"></div>
 
 
 </div>
 
 
 
-<p id="memoryCounter">
+
+<p id="starCounter">
 
 0 / 8 Memories
 
@@ -458,7 +408,9 @@ Our Constellation ✨
 
 
 
-<div id="memoryPopup">
+
+
+<div id="memoryBox">
 
 
 <h3 id="memoryTitle">
@@ -466,9 +418,10 @@ Our Constellation ✨
 </h3>
 
 
-<p id="memoryDescription">
+<p id="memoryText">
 
 </p>
+
 
 
 <button id="closeMemory">
@@ -478,23 +431,20 @@ Close
 </button>
 
 
+
 </div>
 
 
 
 
 
-<button
-
-class="secondary-button"
-
-id="continueConstellation">
-
+<button 
+id="continueStars"
+class="outline-button">
 
 Continue
 
 </button>
-
 
 
 
@@ -511,62 +461,42 @@ Continue
 
 
 
-<!-- ==================================================
-     CHAPTER 5 — BIRTHDAY VIDEO
-================================================== -->
+<!-- ==========================
+     CHAPTER 5 VIDEO
+========================== -->
 
 
-<section
-
-class="scene"
-
-id="scene-video">
+<section class="scene" id="videoScene">
 
 
-
-<div class="scene-content">
-
+<div class="content">
 
 
 <h2>
-
 A Birthday Film For You
-
 </h2>
 
 
 
-<div id="videoFrame">
+
+<div class="video-container">
 
 
-
-<video
-
-id="birthdayVideo"
-
-preload="metadata">
+<video id="birthdayVideo">
 
 
-<source
-
-src="assets/video/birthday.mp4"
-
-type="video/mp4">
+<source src="assets/video/birthday.mp4" type="video/mp4">
 
 
 </video>
 
 
 
-
-<button
-
-id="playVideo">
+<button id="playVideo">
 
 ▶
 
 </button>
-
 
 
 </div>
@@ -574,12 +504,10 @@ id="playVideo">
 
 
 
-<button
 
-class="secondary-button"
-
-id="continueVideo">
-
+<button 
+id="continueVideo"
+class="outline-button">
 
 Continue
 
@@ -589,7 +517,6 @@ Continue
 
 
 </div>
-
 
 
 </section>
@@ -602,24 +529,18 @@ Continue
 
 
 
-<!-- ==================================================
-     CHAPTER 6 — FINAL REVEAL
-================================================== -->
+<!-- ==========================
+     CHAPTER 6 FINAL
+========================== -->
 
 
-<section
-
-class="scene"
-
-id="scene-final">
+<section class="scene" id="finalScene">
 
 
-
-<div class="scene-content">
-
+<div class="content final-content">
 
 
-<p id="finalLineOne">
+<p id="finalFirst">
 
 Every chapter brought me closer...
 
@@ -627,7 +548,7 @@ Every chapter brought me closer...
 
 
 
-<p id="finalLineTwo">
+<p id="finalSecond">
 
 ...to the most beautiful person I know.
 
@@ -635,11 +556,14 @@ Every chapter brought me closer...
 
 
 
-<h1 id="loveReveal">
+
+
+<h1 id="loveText">
 
 I LOVE YOU
 
 </h1>
+
 
 
 
@@ -651,6 +575,7 @@ Happy Birthday, my sunshine.
 
 
 
+
 <p class="signature">
 
 — Salik
@@ -659,7 +584,8 @@ Happy Birthday, my sunshine.
 
 
 
-<p class="secret-code">
+
+<p class="secret">
 
 NGI × STROKPO
 
@@ -668,12 +594,10 @@ NGI × STROKPO
 
 
 
-<button
 
-class="primary-button"
-
-id="restartJourney">
-
+<button 
+id="restart"
+class="gold-button">
 
 Restart Journey
 
@@ -684,9 +608,7 @@ Restart Journey
 </div>
 
 
-
 </section>
-
 
 
 
@@ -701,8 +623,6 @@ Restart Journey
 
 
 
-
-<!-- JavaScript -->
 
 <script src="script.js"></script>
 
