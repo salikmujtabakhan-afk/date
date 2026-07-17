@@ -1015,36 +1015,3 @@ break;
 
 
 
-case 6:
-
-
-const love=get("loveReveal");
-
-
-if(love){
-
-setTimeout(()=>{
-
-love.style.opacity=1;
-
-},1500);
-
-
-}
-
-
-break;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-});
