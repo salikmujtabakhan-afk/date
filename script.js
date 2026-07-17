@@ -1012,6 +1012,34 @@ case 4:
 createStars();
 
 break;
+      case 6:
+
+
+createFireflies();
+
+createPetals();
+
+
+
+const love=get("loveReveal");
+
+
+if(love){
+
+
+setTimeout(()=>{
+
+
+love.style.opacity=1;
+
+
+},1500);
+
+
+}
+
+
+break;
 
 
 
