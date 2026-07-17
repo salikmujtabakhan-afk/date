@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        The Journey to July 19 🌻
+    </title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Dancing+Script:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+
+<body>
+
+
+<!-- ==================================================
+     LOADING SCREEN
+================================================== -->
+
+<div id="loader">
+
+
+    <div class="loader-content">
+
+        <h1>
+            The Journey to July 19 🌻
+        </h1>
+
+
+        <p>
+            Preparing something made only for you...
+        </p>
+
+
+        <div class="loader-bar">
+
+            <span id="loaderProgress"></span>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<!-- ==================================================
+     AMBIENT BACKGROUND
+================================================== -->
+
+<div id="background">
+
+
+    <div class="stars"></div>
+
+    <div class="particles"></div>
+
+
+</div>
+
+
+
+
+
+<!-- ==================================================
+     AUDIO
+================================================== -->
+
+
+<audio 
+id="ambientAudio"
+loop
+preload="auto">
+
+<source src="assets/music/ambient.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+
+
+
+<!-- ==================================================
+     MAIN JOURNEY CONTAINER
+================================================== -->
+
+
+<main id="journey">
+
+
+
+
+
+<!-- ==================================================
+     INTRO SCENE
+================================================== -->
+
+
+<section 
+class="scene active"
+id="scene-intro">
+
+
+<div class="scene-content">
+
+
+<h1 class="cinematic-title">
+
+
+<span>
+Before there was us...
+</span>
+
+
+<span>
+there was you.
+</span>
+
+
+</h1>
+
+
+
+<button 
+class="primary-button"
+id="beginJourney">
+
+
+Begin The Journey
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ==================================================
+     CHAPTER 1 — MEMORY PUZZLE
+================================================== -->
+
+
+<section 
+class="scene"
+id="scene-puzzle">
+
+
+<div class="scene-content">
+
+
+<h2>
+Where did our story begin?
+</h2>
+
+
+
+<p>
+Enter the year our story began.
+</p>
+
+
+
+<div class="puzzle-box">
+
+
+<input
+
+type="number"
+
+id="yearInput"
+
+placeholder="YYYY"
+
+maxlength="4">
+
+
+<button
+
+id="unlockPuzzle">
+
+Unlock Memory
+
+</button>
+
+
+
+<p id="puzzleMessage"></p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ==================================================
+     CHAPTER 2 — HEART MEMORY
+================================================== -->
+
+
+<section
+
+class="scene"
+
+id="scene-heart">
+
+
+
+<div class="scene-content">
+
+
+<h2>
+
+Touch the heart...
+
+</h2>
+
+
+
+<div 
+
+id="heart">
+
+🤍
+
+</div>
+
+
+
+<p 
+
+id="heartMessage">
+
+</p>
+
+
+
+<button
+
+class="secondary-button"
+
+id="continueHeart">
+
+Continue
+
+</button>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==================================================
+     CHAPTER 3 — HER JOURNEY TIMELINE
+================================================== -->
+
+
+<section
+
+class="scene"
+
+id="scene-timeline">
+
+
+
+<div class="scene-content">
+
+
+
+<h2>
+
+Her Journey
+
+</h2>
+
+
+
+<div id="timeline-container">
+
+
+
+<img
+
+id="timelineImage"
+
+src="assets/images/timeline1.webp"
+
+alt="Memory">
+
+
+
+<h3 id="timelineTitle">
+
+Memory Title
+
+</h3>
+
+
+
+<p id="timelineText">
+
+Memory description.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+<div class="timeline-controls">
+
+
+<button id="previousMemory">
+
+←
+
+</button>
+
+
+<div id="timelineDots"></div>
+
+
+<button id="nextMemory">
+
+→
+
+</button>
+
+
+</div>
+
+
+
+
+
+<button
+
+class="secondary-button"
+
+id="continueTimeline">
+
+
+Continue
+
+</button>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ==================================================
+     CHAPTER 4 — CONSTELLATION
+================================================== -->
+
+
+<section
+
+class="scene"
+
+id="scene-constellation">
+
+
+
+<div class="scene-content">
+
+
+
+<h2>
+
+Our Constellation ✨
+
+</h2>
+
+
+
+
+<div id="nightSky">
+
+
+<div id="starsContainer"></div>
+
+
+</div>
+
+
+
+<p id="memoryCounter">
+
+0 / 8 Memories
+
+</p>
+
+
+
+<div id="memoryPopup">
+
+
+<h3 id="memoryTitle">
+
+</h3>
+
+
+<p id="memoryDescription">
+
+</p>
+
+
+<button id="closeMemory">
+
+Close
+
+</button>
+
+
+</div>
+
+
+
+
+
+<button
+
+class="secondary-button"
+
+id="continueConstellation">
+
+
+Continue
+
+</button>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==================================================
+     CHAPTER 5 — BIRTHDAY VIDEO
+================================================== -->
+
+
+<section
+
+class="scene"
+
+id="scene-video">
+
+
+
+<div class="scene-content">
+
+
+
+<h2>
+
+A Birthday Film For You
+
+</h2>
+
+
+
+<div id="videoFrame">
+
+
+
+<video
+
+id="birthdayVideo"
+
+preload="metadata">
+
+
+<source
+
+src="assets/video/birthday.mp4"
+
+type="video/mp4">
+
+
+</video>
+
+
+
+
+<button
+
+id="playVideo">
+
+▶
+
+</button>
+
+
+
+</div>
+
+
+
+
+<button
+
+class="secondary-button"
+
+id="continueVideo">
+
+
+Continue
+
+</button>
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==================================================
+     CHAPTER 6 — FINAL REVEAL
+================================================== -->
+
+
+<section
+
+class="scene"
+
+id="scene-final">
+
+
+
+<div class="scene-content">
+
+
+
+<p id="finalLineOne">
+
+Every chapter brought me closer...
+
+</p>
+
+
+
+<p id="finalLineTwo">
+
+...to the most beautiful person I know.
+
+</p>
+
+
+
+<h1 id="loveReveal">
+
+I LOVE YOU
+
+</h1>
+
+
+
+<h2>
+
+Happy Birthday, my sunshine.
+
+</h2>
+
+
+
+<p class="signature">
+
+— Salik
+
+</p>
+
+
+
+<p class="secret-code">
+
+NGI × STROKPO
+
+</p>
+
+
+
+
+<button
+
+class="primary-button"
+
+id="restartJourney">
+
+
+Restart Journey
+
+</button>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+<!-- JavaScript -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
